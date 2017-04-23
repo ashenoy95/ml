@@ -1,3 +1,3 @@
 # Machine Learning
 
-* __em.py__: A simple implementation of the EM algorithm for a Mixture of Gaussians for one-dimensional data.
+* __em.py__: A simple implementation of the EM algorithm for a Mixture of Gaussians on one-dimensional data.
