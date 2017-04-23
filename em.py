@@ -21,6 +21,7 @@ ctr = 0
 
 while True: 
 	ctr += 1
+	
 	#E Step
 	for i in range(MOG):
 		prob_ij[i] = prob_c[i] * mlab.normpdf(X, mu[i], sigma[i])
