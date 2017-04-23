@@ -13,7 +13,7 @@ X = np.loadtxt('data1.txt')
 #data2 = np.loadtxt('data2.txt')
 #data3 = np.loadtxt('data3.txt')
 Nj = len(X)
-prob_ij = np.zeros((MOG, Nj)) 
+prob_ij = np.zeros((MOG, Nj))	# for every point X_j, what is the probability that class i generated that point
 ij_hat = np.zeros((MOG, Nj)) 
 likelihood = []
 delta = 0.00001
@@ -49,7 +49,7 @@ while True:
 	#if (L-likelihood[-1])<delta:
 	#	break
     
-print ("Mean:",mu,"\nSD:",sigma,"\nWeights:",prob_c)
+print("Mean:",mu,"\nSD:",sigma,"\nWeights:",prob_c)
 plt.plot(likelihood)
 plt.show()
 
