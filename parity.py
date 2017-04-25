@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def phi(v):										#sigmoid func
+def phi(v):										#sigmoid activation func
 	return 1/(1+np.exp(-v))
 
 def backprop(eta):									#online backprop
