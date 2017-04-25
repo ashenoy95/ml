@@ -1,6 +1,3 @@
-#Aniket Shenoy
-#ashenoy@iu.edu
-#python3
 
 import numpy as np
 import matplotlib.pyplot as plt
