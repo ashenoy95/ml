@@ -56,7 +56,7 @@ def backprop(eta):									#online backprop
 
 			#backprop 
 			delta_k = e_k*y_k*(1-y_k)					#delta rule
-			delta_j = w_jk.T*delta_k*y_j*(1-y_j)
+			delta_j = w_jk.T.dot(delta_k)*y_j*(1-y_j)
 			
 			#weight updation
 			delta_w_jk = eta*delta_k.dot(y_j.T) + alpha*delta_w_jk
