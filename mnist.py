@@ -1,6 +1,7 @@
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])	
 
+# tf.layers.dense uses Xavier initialization as the default kernel_initializer for weights
 hidden_1 = tf.layers.dense(inputs=x, units=512, activation=tf.nn.sigmoid)
 hidden_2 = tf.layers.dense(inputs=hidden_1, units=512, activation=tf.nn.sigmoid)
 hidden_3 = tf.layers.dense(inputs=hidden_2, units=512, activation=tf.nn.sigmoid)
