@@ -1,5 +1,3 @@
-#MLP with 512x5 hidden units
-
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])	
 
