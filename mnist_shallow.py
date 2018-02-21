@@ -1,5 +1,3 @@
-#MLP with hidden_unitsx5 hidden units
-
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
