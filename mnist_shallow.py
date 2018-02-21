@@ -1,12 +1,19 @@
+#MLP with hidden_unitsx5 hidden units
+
+import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+
+mnist = input_data.read_data_sets('MNIST_data/', one_hot=True)
+
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])	
+hidden_units = 1024
 
-# tf.layers.dense uses Xavier initialization as the default kernel_initializer for weights
-hidden_1 = tf.layers.dense(inputs=x, units=512, activation=tf.nn.sigmoid)
-hidden_2 = tf.layers.dense(inputs=hidden_1, units=512, activation=tf.nn.sigmoid)
-hidden_3 = tf.layers.dense(inputs=hidden_2, units=512, activation=tf.nn.sigmoid)
-hidden_4 = tf.layers.dense(inputs=hidden_3, units=512, activation=tf.nn.sigmoid)
-hidden_5 = tf.layers.dense(inputs=hidden_4, units=512, activation=tf.nn.sigmoid)
+hidden_1 = tf.layers.dense(inputs=x, units=hidden_units, activation=tf.nn.sigmoid)
+hidden_2 = tf.layers.dense(inputs=hidden_1, units=hidden_units, activation=tf.nn.sigmoid)
+hidden_3 = tf.layers.dense(inputs=hidden_2, units=hidden_units, activation=tf.nn.sigmoid)
+hidden_4 = tf.layers.dense(inputs=hidden_3, units=hidden_units, activation=tf.nn.sigmoid)
+hidden_5 = tf.layers.dense(inputs=hidden_4, units=hidden_units, activation=tf.nn.sigmoid)
 y = tf.layers.dense(inputs=hidden_5, units=10, activation=tf.nn.softmax)
 
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
@@ -27,4 +34,4 @@ for epoch in range(50):
 
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-print('\n', sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+print('\n',sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
