@@ -3,6 +3,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 
 mnist = input_data.read_data_sets('MNIST_data/', one_hot=True)
 
+model_path = 'mnist-shallow/'
+
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])
 hidden_units = 1024
@@ -20,9 +22,11 @@ cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(lo
 train_step = tf.train.AdamOptimizer().minimize(cross_entropy)
 
 init = tf.global_variables_initializer()
+saver = tf.train.Saver()
 
 with tf.Session() as sess:
     sess.run(init)
+    
     for epoch in range(50):
         avg_cost = 0
         for _ in range(1000):
@@ -34,3 +38,6 @@ with tf.Session() as sess:
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
     accuracy = 100*tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     print('\nAccuracy:',sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+    
+    saver.save(sess, model_path)
+        
