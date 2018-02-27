@@ -20,17 +20,17 @@ cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(lo
 train_step = tf.train.AdamOptimizer().minimize(cross_entropy)
 
 init = tf.global_variables_initializer()
-sess = tf.Session()
-sess.run(init)
 
-for epoch in range(50):
-    avg_cost = 0
-    for _ in range(1000):
-        batch_xs, batch_ys = mnist.train.next_batch(100)
-        _, cost = sess.run([train_step, cross_entropy], feed_dict={x: batch_xs, y_: batch_ys})
-        avg_cost += cost/1000   
-    print("Epoch:", '%02d'%(epoch+1), "\tcost={:.9f}".format(avg_cost))
+with tf.Session() as sess:
+    sess.run(init)
+    for epoch in range(50):
+        avg_cost = 0
+        for _ in range(1000):
+            batch_xs, batch_ys = mnist.train.next_batch(100)
+            _, cost = sess.run([train_step, cross_entropy], feed_dict={x: batch_xs, y_: batch_ys})
+            avg_cost += cost/1000   
+        print("Epoch:", '%02d'%(epoch+1), "\tcost={:.9f}".format(avg_cost))
 
-correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
-accuracy = 100*tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-print('\nAccuracy:',sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+    correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+    accuracy = 100*tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    print('\nAccuracy:',sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
