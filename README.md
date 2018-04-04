@@ -1,6 +1,6 @@
 # Machine Learning
 
-* __speech-denoising__: MLP based speech denoiser implemented using TensorFlow that that takes a noisy speech spectrum (speech plus chip eating noise) and then produces a cleaned-up speech spectrum.
+* __speech-denoising__: MLP and RNN based speech denoiser implementations using TensorFlow.
 
 * __em.py__: EM algorithm for a Mixture of Gaussians on one-dimensional data.
 
